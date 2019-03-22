@@ -23,7 +23,7 @@ parser.add_argument("--new_size", nargs='*', type=int, default=[416, 416],
                     help="Resize the input image with `new_size`, size format: [width, height]")
 parser.add_argument("--class_name_path", type=str, default="./data/coco.names",
                     help="The path of the class names.")
-parser.add_argument("--restore_path", type=str, default="./data/darknet_weights/yolov3.ckpt",
+parser.add_argument("--restore_path", type=str, default="./data/tensorflow_weights/yolov3.ckpt",
                     help="The path of the weights to restore.")
 parser.add_argument("--save_video", type=lambda x: (str(x).lower() == 'true'), default=False,
                     help="Whether to save the video detection results.")
@@ -81,7 +81,7 @@ with tf.Session() as sess:
 
         for i in range(len(boxes_)):
             x0, y0, x1, y1 = boxes_[i]
-            plot_one_box(img_ori, [x0, y0, x1, y1], label=args.classes[labels_[i]], color=color_table[labels_[i]])
+            plot_one_box(img_ori, [x0, y0, x1, y1], score=str(scores_[i])[:5], label=args.classes[labels_[i]], color=color_table[labels_[i]])
         cv2.putText(img_ori, '{:.2f}ms'.format((end_time - start_time) * 1000), (40, 40), 0,
                     fontScale=1, color=(0, 255, 0), thickness=2)
         cv2.imshow('image', img_ori)

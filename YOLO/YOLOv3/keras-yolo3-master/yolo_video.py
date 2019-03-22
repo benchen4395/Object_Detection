@@ -1,3 +1,9 @@
+# coding: utf-8
+"""
+Created on Tue Oct 23 17:24:09 2018
+@author: benchen
+"""
+
 import sys
 import argparse
 from yolo import YOLO, detect_video
