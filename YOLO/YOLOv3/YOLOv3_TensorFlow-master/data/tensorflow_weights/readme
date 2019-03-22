@@ -1,0 +1,2 @@
+place pretrained weights on COCO dataset here.
+in this file we convert the darknet wights_files into tensorflow_files
